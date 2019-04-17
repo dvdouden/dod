@@ -1,0 +1,3 @@
+c++ -c -I include src/Atom.cpp -o Atom.o 
+c++ -c -I include src/dodfix.cpp -o dodfix.o 
+c++ dodfix.o Atom.o -o dodfix 
