@@ -277,7 +277,8 @@ void writeVMinf( std::ofstream& out, const chunks& c ) {
 	write( out, 0 ); // version + flags
 	write( out, 0 ); // sample size
 	write( out, c.size() ); // number of samples
-	for ( auto it = c.begin(); it != c.end(); ++it ) {
+    chunks::const_iterator it;
+	for (  it = c.begin(); it != c.end(); ++it ) {
 		write( out, (*it).second ); // sample size
 	}
 	// stco
@@ -285,7 +286,7 @@ void writeVMinf( std::ofstream& out, const chunks& c ) {
 	write( out, "stco" );
 	write( out, 0 ); // version + flags
 	write( out, c.size() ); // number of chunks
-	for ( auto it = c.begin(); it != c.end(); ++it ) {
+	for ( it = c.begin(); it != c.end(); ++it ) {
 		write( out, (*it).first ); // chunk offset
 	}
 }
@@ -398,7 +399,8 @@ void writeAMinf( std::ofstream& out, const chunks& c ) {
 	write( out, 0 ); // version + flags
 	write( out, c.size() ); // number of entries
 	unsigned int i = 1;
-	for ( auto it = c.begin(); it != c.end(); ++it ) {
+    chunks::const_iterator it;
+	for ( it = c.begin(); it != c.end(); ++it ) {
 		write( out, i ); // first chunk
 		i++;
 		write( out, 32000 ); // samples per chunk
@@ -417,7 +419,7 @@ void writeAMinf( std::ofstream& out, const chunks& c ) {
 	write( out, "stco" );
 	write( out, 0 ); // version + flags
 	write( out, c.size() ); // number of chunks
-	for ( auto it = c.begin(); it != c.end(); ++it ) {
+	for ( it = c.begin(); it != c.end(); ++it ) {
 		write( out, (*it).first ); // chunk offset
 	}
 }
